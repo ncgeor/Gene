@@ -11,22 +11,22 @@ class Game:
         # Checks for and returns the winner
         pass
 
-    class Player:
+class Player:
 
-        def __init__(self, n):
-            self.setChar(n)
+    def __init__(self, n):
+        self.setChar(n)
 
-        def setChar(self, n):
-            self.char = n
+    def setChar(self, n):
+        self.char = n
 
-        def getChar(self):
-            return self.char
+    def getChar(self):
+        return self.char
 
 
-    class Board:
+class Board:
 
-        def __str__(self):
-            # Needed for outputting the Board
-            # Front end developer's work here!
-            """ Must return a string """
-            pass
+    def __str__(self):
+        # Needed for outputting the Board
+        # Front end developer's work here!
+        """ Must return a string """
+        pass
