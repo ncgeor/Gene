@@ -82,7 +82,7 @@ class Player:
 
     def __str__(self):
         # Will output this return if you try to print the class
-        return str
+        return str(self.getChar())
 
 class Board:
 
@@ -121,5 +121,4 @@ class Board:
         return out
 
 if __name__ == '__main__':
-    print("The winner is ")
     j = Game()
