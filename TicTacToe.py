@@ -6,7 +6,7 @@ class Game:
         Gene = (Player('O'))
         counter = 1
 
-        while(self.Winner() == None):
+        while(self.Winner(self.board) == False):
             # Loops turns until the game is won
             # Odd turns are Human, even are Gene
             if(counter%2 == 0):
@@ -15,17 +15,30 @@ class Game:
                 self.turn(Human)
             counter += 1
 
-        return self.Winner()
-
     def turn(self, plyr):
         # runs a turn for a player
         print(self.board)
         targetSpot = int(input("You would like to play in spot: "))
         self.board.setPiece(targetSpot, plyr)
 
-    def Winner(self):
+    def Winner(self, b):
         # Checks for and returns the winner
-        return None
+        board = b.getBoard()
+
+        Horizonal_1 = ((board[0] == board[1])and(board[0] == board[2]) and board[0] != ' ')
+        Horizonal_2 = ((board[3] == board[4])and(board[3] == board[5]) and board[3] != ' ')
+        Horizonal_3 = ((board[6] == board[7])and(board[6] == board[8]) and board[6] != ' ')
+        Horizonal = Horizonal_1 or Horizonal_2 or Horizonal_3
+
+        Vertical_1 = ((board[0] == board[3]) and (board[0] == board[6]) and board[6] != ' ')
+        Vertical_2 = ((board[1] == board[4]) and (board[1] == board[7]) and board[7] != ' ')
+        Vertical_3 = ((board[2] == board[5]) and (board[2] == board[8]) and board[8] != ' ')
+        Vertical = Vertical_1 or Vertical_2 or Vertical_3
+
+        Diagonal_1 = ((board[0] == board[4]) and (board[4] == board[8]) and board[8] != ' ')
+        Diagonal_2 = ((board[4] == board[2]) and (board[4] == board[2]) and board[2] != ' ')
+        Diagonal = Diagonal_1 or Diagonal_2
+        return (Horizonal or Vertical or Diagonal)
 
 class Player:
 
@@ -41,7 +54,7 @@ class Player:
 
     def __str__(self):
         # Will output this return if you try to print the class
-        return str.getChar()
+        return str
 
 class Board:
 
@@ -61,7 +74,7 @@ class Board:
 
     def setPiece(self, n, plyr):
         if((self.board[n] != 'X')and(self.board[n] != 'O')):
-            self.board[n] = plyr.getChar()
+            self.board[n] = plyr
         else:
             self.submitPlacement(int(input('Impossible move. Where would you like to place: '), plyr))
 
@@ -80,4 +93,5 @@ class Board:
         return out
 
 if __name__ == '__main__':
-    print(Game())
+    print("The winner is ")
+    j = Game()
