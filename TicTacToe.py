@@ -1,24 +1,52 @@
+from random import randrange
 class Game:
 
     def __init__(self):
         self.board = Board()
-        Human = (Player('X'))
-        Gene = (Player('O'))
+        self.Human = (Player('X'))
+        self.Gene = (Player('O'))
         counter = 1
 
         while(self.Winner(self.board) == False):
             # Loops turns until the game is won
             # Odd turns are Human, even are Gene
             if(counter%2 == 0):
-                self.turn(Gene)
+                self.turn(self.Gene)
             else:
-                self.turn(Human)
+                self.turn(self.Human)
             counter += 1
 
     def turn(self, plyr):
         # runs a turn for a player
-        print(self.board)
-        targetSpot = int(input("You would like to play in spot: "))
+        if(plyr == self.Human):
+            print(self.board)
+            targetSpot = int(input("You would like to play in spot: "))
+            tempArray = self.board.getBoard()
+            if(tempArray[targetSpot] != ' '):
+                #prevents player from making same turn
+                while(True):
+                    targetSpot = int(input("That was the wrong answer try again:"))
+                    if(tempArray[targetSpot] == ' '):
+                        break
+
+        # basic turn for Gene
+        else:
+            #gets Random number and checks to see if it is already used
+            irand = randrange(9)
+            tempArray = self.board.getBoard()
+            if(tempArray[irand] != ' '):
+                while(True):
+                    irand = irand + 1
+                    if(tempArray[irand] != ' '):
+                        return
+                    else:
+                        targetSpot = irand
+                        break
+                    if(irand >= 10):
+                        irand = 0
+            else:
+                print(irand)
+                targetSpot = irand
         self.board.setPiece(targetSpot, plyr)
 
     def Winner(self, b):
