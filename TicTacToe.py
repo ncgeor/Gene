@@ -5,7 +5,6 @@ class Game:
         self.board = Board()
         self.Human = (Player('X'))
         self.Gene = (Player('O'))
-        self.Winner = None
         counter = 1
 
         while(self.Winner(self.board) == False):
