@@ -33,7 +33,7 @@ class Game:
         # basic turn for Gene
         else:
             #gets Random number and checks to see if it is already used
-            irand = randrange(9)
+            irand = randrange(8)
             tempArray = self.board.getBoard()
             if(tempArray[irand] != ' '):
                 while(True):
@@ -43,10 +43,9 @@ class Game:
                     else:
                         targetSpot = irand
                         break
-                    if(irand >= 10):
+                    if(irand >= 9):
                         irand = 0
             else:
-                print(irand)
                 targetSpot = irand
         self.board.setPiece(targetSpot, plyr)
 
@@ -56,19 +55,51 @@ class Game:
         wining_player = None
 
         Horizonal_1 = ((board[0] == board[1])and(board[0] == board[2]) and board[0] != ' ')
+        if(Horizonal_1 == True):
+            print("Player {} Wins!".format(board[0]))
+            self.Reset()
         Horizonal_2 = ((board[3] == board[4])and(board[3] == board[5]) and board[3] != ' ')
+        if(Horizonal_2 == True):
+            print("Player {} Wins!".format(board[3]))
+            self.Reset()
         Horizonal_3 = ((board[6] == board[7])and(board[6] == board[8]) and board[6] != ' ')
-        Horizonal = Horizonal_1 or Horizonal_2 or Horizonal_3
+        if (Horizonal_3 == True):
+            print("Player {} Wins!".format(board[6]))
+            self.Reset()
 
         Vertical_1 = ((board[0] == board[3]) and (board[0] == board[6]) and board[6] != ' ')
+        if(Vertical_1 == True):
+            print("Player {} Wins!".format(board[0]))
+            self.Reset()
         Vertical_2 = ((board[1] == board[4]) and (board[1] == board[7]) and board[7] != ' ')
+        if(Vertical_2 == True):
+            print("Player {} Wins!".format(board[1]))
+            self.Reset()
         Vertical_3 = ((board[2] == board[5]) and (board[2] == board[8]) and board[8] != ' ')
-        Vertical = Vertical_1 or Vertical_2 or Vertical_3
+        if(Vertical_3 == True):
+            print("Player {} Wins!".format(board[2]))
+            self.Reset()
 
         Diagonal_1 = ((board[0] == board[4]) and (board[4] == board[8]) and board[8] != ' ')
+        if(Diagonal_1 == True):
+            print("Player {} Wins!".format(board[0]))
+            self.Reset()
         Diagonal_2 = ((board[4] == board[2]) and (board[4] == board[2]) and board[2] != ' ')
-        Diagonal = Diagonal_1 or Diagonal_2
-        return (Horizonal or Vertical or Diagonal)
+        if(Diagonal_2 == True):
+            print("Player {} Wins!".format(board[0]))
+            self.Reset()
+
+        else: return(False)
+    def Reset(self):
+        #resets values so the game can be replayed
+        respond = input("Would you like to play again Y/N: ")
+        if(respond.lower() == "y"):
+            #reset Board
+            return()
+        if(respond == "n"):
+            print("Thanks For Playing Bitch ass hoe")
+            exit()
+
 
 class Player:
 
