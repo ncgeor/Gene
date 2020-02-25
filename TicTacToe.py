@@ -5,6 +5,7 @@ class Game:
         self.board = Board()
         self.Human = (Player('X'))
         self.Gene = (Player('O'))
+        self.Winner = None
         counter = 1
 
         while(self.Winner(self.board) == False):
@@ -52,6 +53,7 @@ class Game:
     def Winner(self, b):
         # Checks for and returns the winner
         board = b.getBoard()
+        wining_player = None
 
         Horizonal_1 = ((board[0] == board[1])and(board[0] == board[2]) and board[0] != ' ')
         Horizonal_2 = ((board[3] == board[4])and(board[3] == board[5]) and board[3] != ' ')
